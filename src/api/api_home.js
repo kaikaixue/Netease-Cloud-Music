@@ -1,4 +1,9 @@
-import { get, post, getBlob } from '@/request'
+import axios from '../http/request.js'
 
 // 获取默认搜索
-export const searchDefault = () => post('/search/default')
+export const searchDefault = () => {
+    return axios({
+        url: '/api/search/default',
+        method: 'post',
+    })
+}
