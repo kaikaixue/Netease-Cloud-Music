@@ -15,3 +15,11 @@ export const searchHotDetail = () => {
         method: 'post',
     })
 }
+
+// 获取搜索推荐 /search/suggest?keywords=海阔天空
+export const searchSuggest = (keywords) => {
+    return axios({
+        url: `/api/search/suggest?keywords=${keywords}`,
+        method: 'post',
+    })
+}
