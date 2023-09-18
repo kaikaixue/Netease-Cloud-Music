@@ -1,6 +1,7 @@
 .mt5 {
   margin-top: 5px !important;
 }
+
 .mt8 {
   margin-top: 8px !important;
 }
@@ -425,6 +426,10 @@
   line-height: 20px;
 }
 
+.lh24 {
+  line-height: 24px;
+}
+
 .h28 {
   height: 28px;
 }
@@ -723,4 +728,10 @@
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.text-cut {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
