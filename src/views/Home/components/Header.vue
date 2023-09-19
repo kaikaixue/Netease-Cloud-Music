@@ -162,7 +162,7 @@ components: {
 onMounted(() => {
   getSearchDefault();
 });
-const searchList = computed(() => store.state.search.searchList).value;
+const searchList = computed(() => store.state.search.searchList);
 const searchText = ref("");
 const defaultSearch = ref("");
 const hotDetailList = reactive({ arr: [] });
@@ -185,7 +185,7 @@ function getSearchHotDetail() {
 // 点击搜索推荐item，输入搜索
 function searchHotItem(item) {
   if (!item.searchWord) return;
-  searchList.push(item);
+  searchList.value.push(item);
   store.commit("search/setSearchList", searchList);
 }
 // 点击搜索历史item搜索
@@ -193,7 +193,7 @@ function searchBySearchHistory(item) {}
 // 删除某个搜索记录
 function closeSearchHistoryByItem(item, index) {
   document.getElementById("searchInput").focus();
-  searchList.splice(index, 1);
+  searchList.value.splice(index, 1);
   store.commit("search/setSearchList", searchList);
 }
 // 清除所有搜索记录
@@ -204,7 +204,7 @@ function clearSearchHistory() {
     showCancelButton: false,
   })
     .then(() => {
-      searchList.length = 0;
+      searchList.value.length = 0;
       store.commit("search/setSearchList", []);
     })
     .catch(() => {});

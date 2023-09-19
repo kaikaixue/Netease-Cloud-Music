@@ -1,3 +1,6 @@
+import {
+    loginState
+} from "../../api/api_login"
 export default {
     namespaced: true,
     state() {
@@ -25,10 +28,12 @@ export default {
         },
     },
     actions: {
-        changeSetSearchList({
+        async getLoginState({
             commit
-        }, data) {
-            commit('setSearchList', data)
+        }, nowTime, cookie) {
+            const res = await loginState(nowTime, cookie)
+            commit("setAccount", res.data.account)
+            commit("setProfile", res.data.profile)
         }
     }
 }
