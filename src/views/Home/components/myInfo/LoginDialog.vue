@@ -1,6 +1,13 @@
 <template>
-  <el-dialog v-model="dialogVisb" @open="getQRCode">
-    <img :src="qrImgUrl" alt="" />
+  <el-dialog v-model="dialogVisb" @open="getQRCode" width="24%">
+    <div class="dialog-container">
+      <div class="flex flex-direction align-center">
+        <span class="fs28 fw3" style="color: #000;">扫码登录</span>
+        <img class="img-qr" :src="qrImgUrl" alt="" />
+        <p>使用<a href="">网易云音乐APP</a>扫码登录</p>
+        <p class="mt40">选择其它登录模式&gt;</p>
+      </div>
+    </div>
   </el-dialog>
 </template>
 
@@ -15,7 +22,7 @@ import {
 } from "@/api/api_login.js";
 import { ElMessage } from "element-plus";
 const props = defineProps(["visible"]);
-const emit = defineEmits(['update:visible'])
+const emit = defineEmits(["update:visible"]);
 components: {
 }
 onMounted(() => {});
@@ -58,23 +65,33 @@ async function getQRCode() {
     if (res.code == 803) {
       ElMessage({
         message: res.message,
-        type: 'success',
-      })
-      clearInterval(check)
-      getInfo(res.cookie)
+        type: "success",
+      });
+      clearInterval(check);
+      getInfo(res.cookie);
     }
   }, 3000);
 }
 
 function getInfo(cookie) {
   let nowTime = new Date();
-  store.dispatch('user/getLoginState', nowTime, cookie)
-  dialogVisb.value = false
+  store.dispatch("user/getLoginState", nowTime, cookie);
+  dialogVisb.value = false;
 }
 </script>
 
 <style lang="scss" scoped>
-.info-container {
-  width: 240px;
+.dialog-container {
+  height: 50vh;
+
+  .img-qr {
+    width: 220px;
+    height: 220px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #107DC8;
+  }
 }
 </style>
